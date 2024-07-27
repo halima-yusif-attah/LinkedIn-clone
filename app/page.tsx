@@ -15,7 +15,7 @@ export default async function Home() {
 
   
   return (
-    <main className="grid grid-cols-8 mt-5 sm:px-5">
+    <main className="grid grid-cols-6 mt-5 sm:px-5">
       <section className="hidden md:inline md:col-span-2">
         <UserInformation posts={posts} />
       </section>
@@ -28,11 +28,6 @@ export default async function Home() {
         <PostFeed posts={posts} />
       </section>
 
-      <section className="hidden xl:inline justify-center col-span-2">
-        {posts.map((post) => (
-          <Widget key={post.id} post={post} />
-        ))}
-      </section>
     </main>
   );
 }

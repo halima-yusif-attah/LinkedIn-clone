@@ -8,7 +8,6 @@ import { revalidatePath } from "next/cache";
 
 export default async function deletePostAction(postId: string) {
     const user = await currentUser();
-    console.log('id-delete', postId);
     
     if (!user?.id) {
         alert("User not authenticated")

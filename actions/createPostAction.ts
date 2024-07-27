@@ -41,7 +41,6 @@ export default async function createPostAction(formData: FormData) {
 });
 
 const docId = docRef.id;
-// ref(storage, `posts/${user.id}/files/${docId}`)
 const imageRef = ref(storage, `posts/${docId}`);
 
 try {
@@ -53,7 +52,6 @@ try {
     image_url = await getDownloadURL(uploadResult.ref);
     
     if (image.size > 0) {
-      // updateDoc(doc(db, "posts", user.id, "files", docId)
       await updateDoc(doc(db, "posts", docId), {
       id: docId,
       imageUrl: image_url,
@@ -70,7 +68,5 @@ try {
   console.error(`Error during file upload or document update: ${error}`);
 }
 
-  
-  //revalidatePath '/' home page
   revalidatePath('/')
 }

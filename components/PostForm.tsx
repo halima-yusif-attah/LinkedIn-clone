@@ -50,10 +50,8 @@ function PostForm() {
         <form
           ref={ref}
           action={(formData) => {
-            //Handle form submission with server action
             const promise = handlePostAction(formData);
 
-            //Toast notification based on the promise above
             toast.promise(promise, {
               loading: "Creating post...",
               success: "Post created!",
@@ -93,7 +91,6 @@ function PostForm() {
             </button>
           </div>
 
-          {/* Preview conditional check */}
           {preview && (
             <div className="mt-3">
               <Image

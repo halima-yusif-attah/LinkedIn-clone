@@ -1,6 +1,5 @@
 import { db } from "@/firebase/db";
 import { IUser } from "@/types/user";
-// import { IFollowers, IFollowersBase } from "@/modules/followers";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 
@@ -11,11 +10,9 @@ export interface IFollowers {
 
 export async function getAllFollowers () {
     const user  = await currentUser();
-    console.log('user -get', user)
 
     try {
     const querySnapshot = await getDoc(doc(db, "users"));
-    console.log('querySnapshot -get', querySnapshot)
 
      if (querySnapshot.exists()) {
     console.log("Document data:", querySnapshot.data());
@@ -25,7 +22,6 @@ export async function getAllFollowers () {
 
 
     const userData = querySnapshot.data() as IFollowers; 
-    console.log('postuid - get', userData.postUserId)
 
     return {
   followers: userData.followers || [],

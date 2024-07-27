@@ -40,9 +40,6 @@ export const FollowerProvider = ({ children }: { children: ReactNode }) => {
   const [followers, setFollowers] = useState<IUser[]>([]);
   const [author, setAuthor] = useState<string>("");
 
-  console.log("user -context", user);
-  console.log("isLoaded -context", isLoaded);
-  console.log("isSignedin -context", isSignedIn);
 
   useEffect(() => {
     const fetchFollowers = async () => {
@@ -57,9 +54,7 @@ export const FollowerProvider = ({ children }: { children: ReactNode }) => {
             return follower;
           });
           const postUid = allFollowers.postUserId;
-
-          console.log("allFollowers", allFollowers); 
-          console.log("postuid", postUid); 
+ 
 
           setFollowers(followersList);
           setAuthor(postUid);

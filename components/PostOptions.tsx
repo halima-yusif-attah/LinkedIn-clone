@@ -25,8 +25,6 @@ function PostOptions({ post }: { post : IPostDocument }) {
     }
   }, [post, user])
 
-
-
   const likedOrUnlikePost = async () => {
     if (!user?.id) {
       throw new Error("User not authenticated")
@@ -41,7 +39,7 @@ function PostOptions({ post }: { post : IPostDocument }) {
     setLikes(newLikes)
 
     try {
-    const postRef = doc(db, `posts/${user.id}/files/${post.id}`);
+    const postRef = doc(db, `posts/${post.id}`);
     await updateDoc(postRef, {
       likes: liked ? arrayRemove(user.id) : arrayUnion(user.id),
     });
@@ -103,7 +101,6 @@ function PostOptions({ post }: { post : IPostDocument }) {
             });
           }}
         >
-          {/* if user has liked the post, show filled thumbs up icon */}
           <ThumbsUpIcon
             className={cn("mr-1", liked && "text-[#4bb1c2] fill-[#4bb1c2]")}
           />

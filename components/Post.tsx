@@ -13,8 +13,7 @@ import { Badge } from './ui/badge';
 import ReactTimeago from "react-timeago";
 import { toast } from 'sonner';
 import { IPostDocument } from '@/modules/post';
-import { useEffect, useState } from 'react';
-import { addDoc, arrayRemove, arrayUnion, collection, doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 import { getAllFollowers, IFollowers } from '@/actions/getAllFollowers';
 import { IUser } from '@/types/user';
@@ -30,9 +29,6 @@ function Post({ post }: { post: IPostDocument }) {
    if (!user) return null;
 
    const isAuthor = user?.id === post.userDB.userId;
-   console.log("id-post", post.id);
-   console.log("followed", followed);
-   console.log("post.userDB.userId", post.id);
 
    const userDB: IUser = {
      userId: user.id,
@@ -45,8 +41,6 @@ function Post({ post }: { post: IPostDocument }) {
      if (!user?.id) {
        throw new Error("User not authenticated");
      }
-     console.log("user -post", user);
-     console.log("followerUserId -post", followingUserId);
 
      const originalFollowed = followed;
      const originalFollowers = followers;
@@ -72,8 +66,6 @@ function Post({ post }: { post: IPostDocument }) {
 
        const postDoc = await getDoc(postRef);
        const postData = postDoc.data();
-
-       console.log("postData", postData);
        
        if (postData) {
          setFollowers(postData.followers || []);
@@ -114,28 +106,8 @@ function Post({ post }: { post: IPostDocument }) {
               )}
             </p>
             <p className="text-xs text-gray-400">
-              {!isAuthor && (
-                <Button
-                  className="mt-1"
-                  variant="outline"
-                  onClick={() => {
-                    const promise = followOrUnfollow(post.userDB.userId);
-                    // Toast Notification
-                    console.log("promise", promise);
-                    toast.promise(promise, {
-                      loading: followed ? "Unfollowing..." : "following...",
-                      success: followed
-                        ? "unfollowed successfully..."
-                        : "following successful",
-                      error: followed
-                        ? "Failed to follow"
-                        : "Failed to unfollow",
-                    });
-                  }}
-                >
-                 { followed? "following" : "follow"}
-                </Button>
-              )}
+              @{post.userDB.firstName}
+              {post.userDB.lastName}-{post.userDB.userId.toString().slice(-4)}
             </p>
           </div>
 
@@ -144,7 +116,7 @@ function Post({ post }: { post: IPostDocument }) {
               variant="outline"
               onClick={() => {
                 const promise = deletePostAction(post.id);
-                // Toast Notification
+          
                 toast.promise(promise, {
                   loading: "Deleting Post...",
                   success: "Post Deleted Successfully",
