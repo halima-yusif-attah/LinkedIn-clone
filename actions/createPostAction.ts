@@ -41,6 +41,7 @@ export default async function createPostAction(formData: FormData) {
 });
 
 const docId = docRef.id;
+// const imageRef = ref(storage, `posts/${docId}`);
 const imageRef = ref(storage, `posts/${docId}`);
 
 try {
@@ -48,6 +49,7 @@ try {
     const imageBuffer = await image.arrayBuffer();
 
     const uploadResult = await uploadBytes(imageRef, imageBuffer);
+    console.log('uploadResult', uploadResult)
   
     image_url = await getDownloadURL(uploadResult.ref);
     

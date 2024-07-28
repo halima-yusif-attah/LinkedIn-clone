@@ -26,6 +26,8 @@ function Post({ post }: { post: IPostDocument }) {
    const { followed, setFollowed, followers, setFollowers } =
      useFollowerContext();
 
+     console.log('postid - post', post.id)
+
    if (!user) return null;
 
    const isAuthor = user?.id === post.userDB.userId;
