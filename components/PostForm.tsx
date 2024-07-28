@@ -18,8 +18,10 @@ function PostForm() {
     const handlePostAction = async (formData: FormData) => {
         const formDataCopy = formData;
         ref.current?.reset();
+        console.log('user', user)
         
         const text = formDataCopy.get('postInput') as string;
+        console.log('text', text)
         
         if (!text.trim()) {
             throw new Error(`You must provide a post input`)
@@ -51,7 +53,7 @@ function PostForm() {
           ref={ref}
           action={(formData) => {
             const promise = handlePostAction(formData);
-
+            console.log('promise', promise)
             toast.promise(promise, {
               loading: "Creating post...",
               success: "Post created!",
