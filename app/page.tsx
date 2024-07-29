@@ -17,24 +17,25 @@ export default async function Home() {
   
   return (
     <>
-    <SignedOut>
-      <div className="flex flex-1  items-center justify-center">
-        <section className="flex justify-center min-h-screen items-center w-[60%] m-auto">
+      <SignedOut>
+        <div className="flex flex-1  items-center justify-center">
+          <section className="flex justify-center min-h-screen items-center w-[60%] m-auto">
             <Main />
-        </section>
-      </div>
+          </section>
+        </div>
       </SignedOut>
       <main className="grid grid-cols-6 mt-5 sm:px-5">
         <section className="hidden md:inline md:col-span-2">
-          <UserInformation posts={posts} />
+          <SignedIn>
+            <UserInformation posts={posts} />
+          </SignedIn>
         </section>
 
         <section className="col-span-full md:col-span-6 xl:col-span-4 xl:max-w-xl mx-auto w-full">
           <SignedIn>
             <PostForm />
+            <PostFeed posts={posts} />
           </SignedIn>
-
-          <PostFeed posts={posts} />
         </section>
       </main>
     </>

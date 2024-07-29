@@ -118,7 +118,7 @@ function Post({ post }: { post: IPostDocument }) {
               variant="outline"
               onClick={() => {
                 const promise = deletePostAction(post.id);
-          
+
                 toast.promise(promise, {
                   loading: "Deleting Post...",
                   success: "Post Deleted Successfully",
@@ -142,6 +142,7 @@ function Post({ post }: { post: IPostDocument }) {
             alt="Post Image"
             height={500}
             className="w-full mx-auto"
+            unoptimized
           />
         )}
       </div>
