@@ -24,7 +24,7 @@ export default async function Home() {
           </section>
         </div>
       </SignedOut>
-      <main className="grid grid-cols-6 mt-5 sm:px-5">
+      <main className="grid grid-cols-8 mt-5 sm:px-5">
         <section className="hidden md:inline md:col-span-2">
           <SignedIn>
             <UserInformation posts={posts} />
@@ -35,6 +35,12 @@ export default async function Home() {
           <SignedIn>
             <PostForm />
             <PostFeed posts={posts} />
+          </SignedIn>
+        </section>
+
+        <section className="md:col-span-2 md:inline xl:max-w-xl mx-auto w-full">
+          <SignedIn>
+            <Widget />
           </SignedIn>
         </section>
       </main>

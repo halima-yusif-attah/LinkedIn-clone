@@ -7,10 +7,12 @@ import { IUser } from "@/types/user";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
-function Widget({ post }: { post: IPostDocument }) {
+
+function Widget() {
   const { user } = useUser();
-  const { followed, setFollowed, followers, setFollowers, author } =
+  const { followed, setFollowed, followers, author } =
     useFollowerContext();
     
 
@@ -24,17 +26,28 @@ function Widget({ post }: { post: IPostDocument }) {
   return (
     <div className="ml-6 h-[790px] max-h-[790px] bg-white rounded-lg">
       <div className="flex flex-col gap-2">
-        <h2 className="text-center font-medium text-xl">Followers</h2>
-        <p>hello</p>
-        {author && 
-        <Link href="/user.id" className="border-b border-gray-200">
-          {followers.map((follower) => (
-            <div key={follower.userId} className="">
-              <p>{follower.firstName}</p>
-            </div>
-          ))}
-        </Link>
-}
+        <Image
+          src="https://media.licdn.com/media/AAYQAgTPAAgAAQAAAAAAADVuOvKzTF-3RD6j-qFPqhubBQ.png"
+          width={200}
+          alt="Post Image"
+          height={200}
+          className="w-full mx-auto mb-4"
+          unoptimized
+        />
+
+        {author && (
+          <>
+            <h2 className="text-center font-medium text-xl">Followers</h2>
+
+            <Link href="/user.id" className="border-b border-gray-200">
+              {followers.map((follower) => (
+                <div key={follower.userId} className="">
+                  <p>{follower.firstName}</p>
+                </div>
+              ))}
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 
 function Header() {
   return (
-    <div className="flex items-center py-2  max-w-6xl mx-auto ">
+    <div className="flex items-center py-2 pl-[1.2rem] max-w-8xl mx-auto ">
       <Image
         className="rounded-bg"
         src="https://links.papareact.com/b3z"
