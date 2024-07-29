@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAqFzNS7WHqY653zt8CmRmL6rHTnFikbsc",
-  authDomain: "linkedin-clone-d8d15.firebaseapp.com",
-  projectId: "linkedin-clone-d8d15",
-  storageBucket: "linkedin-clone-d8d15.appspot.com",
-  messagingSenderId: "67554998688",
-  appId: "1:67554998688:web:c5114f434edafaaef48cc5"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID
 };
 
 
